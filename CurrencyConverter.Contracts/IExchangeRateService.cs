@@ -8,6 +8,7 @@ namespace CurrencyConverter.Contracts
         Task<ExchangeRateModel> GetLatestRatesAsync(string baseCurrency);
         Task<ExchangeRateModel> ConvertCurrencyAsync(string fromCurrency, string toCurrency, decimal amount);
         Task<ExchangeRateHistoryModel> GetHistoricalRatesAsync(string baseCurrency, DateTime startDate, DateTime endDate, int page, int pageSize);
+        Task<Dictionary<string,string>> GetCurrencies();
     }
 
 

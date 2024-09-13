@@ -50,6 +50,17 @@ public class ExchangeRateController : ControllerBase
     }
 
 
+    [HttpGet("currencies")]
+    public async Task<IActionResult> GetCurrencies()
+    {
+        return await MethodExecutorAsync(
+            async () =>
+            {
+                var rates = await _exchangeRateService.GetCurrencies();
+                return Ok(rates);
+            });
+    }
+
 
 
     #region Private Methods 

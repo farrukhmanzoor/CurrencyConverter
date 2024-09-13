@@ -59,5 +59,17 @@ namespace CurrencyConverter.Services
             data.Rates = data?.Rates.Skip((page - 1) * pageSize).Take(pageSize).ToDictionary();
             return data;
         }
+
+        public async Task<Dictionary<string, string>> GetCurrencies()
+        {
+            var response = await _retryPolicy.ExecuteAsync(
+             async (ct) => await _httpClient.GetAsync($"https://api.frankfurter.app/currencies", ct)
+             , CancellationToken.None);
+
+            response.EnsureSuccessStatusCode();
+            var data = await response.Content.ReadFromJsonAsync<Dictionary<string,string>>();
+
+            return data;
+        }
     }
 }
