@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const CurrencyConverter = () => {
+const CurrencyConverter = ({ currencies }) =>{
   const [fromCurrency, setFromCurrency] = useState('USD');
   const [toCurrency, setToCurrency] = useState('EUR');
   const [amount, setAmount] = useState(1);
@@ -23,18 +23,27 @@ const CurrencyConverter = () => {
   return (
     <div className="card">
       <h2>Convert Currency</h2>
-      <input
-        type="text"
-        value={fromCurrency}
-        onChange={(e) => setFromCurrency(e.target.value)}
-        placeholder="From Currency (e.g. USD)"
-      />
-      <input
-        type="text"
-        value={toCurrency}
-        onChange={(e) => setToCurrency(e.target.value)}
-        placeholder="To Currency (e.g. EUR)"
-      />
+      <select value={fromCurrency} onChange={(e) => setFromCurrency(e.target.value)}
+        placeholder="From Currency"
+        >
+        {currencies.map((currency) => (
+          <option key={currency} value={currency}>
+            {currency}
+          </option>
+        ))}
+      </select>
+      
+      <select 
+      value={toCurrency} 
+      onChange={(e) => setToCurrency(e.target.value)}
+      placeholder="To Currency"  
+      >
+        {currencies.map((currency) => (
+          <option key={currency} value={currency}>
+            {currency}
+          </option>
+        ))}
+      </select>
       <input
         type="number"
         value={amount}

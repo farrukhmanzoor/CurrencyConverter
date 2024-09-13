@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const HistoricalRates = () => {
+const HistoricalRates = ({ currencies }) => {
   const [baseCurrency, setBaseCurrency] = useState('USD');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -48,12 +48,13 @@ console.log(dateTime);
   return (
     <div className="card">
       <h2>Get Historical Rates</h2>
-      <input
-        type="text"
-        value={baseCurrency}
-        onChange={(e) => setBaseCurrency(e.target.value)}
-        placeholder="Base Currency (e.g. USD)"
-      />
+      <select value={baseCurrency} onChange={(e) => setBaseCurrency(e.target.value)}>
+        {currencies.map((currency) => (
+          <option key={currency} value={currency}>
+            {currency}
+          </option>
+        ))}
+      </select>
       <input
         type="date"
         value={startDate}

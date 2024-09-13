@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const LatestRates = () => {
+const LatestRates = ({ currencies }) => {
   const [baseCurrency, setBaseCurrency] = useState('USD');
   const [rates, setRates] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -20,12 +20,16 @@ const LatestRates = () => {
   return (
     <div className="card">
       <h2>Get Latest Rates</h2>
-      <input
-        type="text"
-        value={baseCurrency}
-        onChange={(e) => setBaseCurrency(e.target.value)}
-        placeholder="Base Currency (e.g. USD)"
-      />
+   
+<select value={baseCurrency} onChange={(e) => setBaseCurrency(e.target.value)}>
+        {currencies.map((currency) => (
+          <option key={currency} value={currency}>
+            {currency}
+          </option>
+        ))}
+      </select>
+
+
       <button onClick={fetchLatestRates}>Fetch Latest Rates</button>
 
       {loading ? (
