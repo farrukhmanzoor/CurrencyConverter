@@ -38,7 +38,7 @@ const CurrencyConverter = ({ currencies }) =>{
       onChange={(e) => setToCurrency(e.target.value)}
       placeholder="To Currency"  
       >
-        {currencies.map((currency) => (
+         {currencies.map((currency) => (
           <option key={currency} value={currency}>
             {currency}
           </option>

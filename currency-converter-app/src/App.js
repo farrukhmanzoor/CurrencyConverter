@@ -13,7 +13,7 @@ function App() {
       try {
         const response = await axios.get('https://localhost:44311/api/exchangerate/currencies');
         let d =Object.entries(response.data)
-        .map(([key, value]) => `${key}: ${value}`);
+        .map(([key, value]) => `${key}`);
         setCurrencies(d);
         setLoading(false);
       } catch (error) {

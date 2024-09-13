@@ -9,7 +9,6 @@ const HistoricalRates = ({ currencies }) => {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [pageSize] = useState(5); // Fixed page size
-
   const fetchHistoricalRates = async (pageNum = 1) => {
     setLoading(true);
     try {
@@ -26,9 +25,8 @@ const HistoricalRates = ({ currencies }) => {
 
 // Function to format the date
 const formatDateTime = (dateTime) => {
-console.log(dateTime);
+
     const date = new Date(dateTime);
-    console.log(date);
     return date.toDateString(); // Returns 'YYYY-MM-DD HH:MM:SS'
   };
 
@@ -49,12 +47,13 @@ console.log(dateTime);
     <div className="card">
       <h2>Get Historical Rates</h2>
       <select value={baseCurrency} onChange={(e) => setBaseCurrency(e.target.value)}>
-        {currencies.map((currency) => (
+      {currencies.map((currency) => (
           <option key={currency} value={currency}>
             {currency}
           </option>
         ))}
       </select>
+     
       <input
         type="date"
         value={startDate}
